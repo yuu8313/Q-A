@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クイズクリエイター</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-creator glass">
+            <h1>クイズクリエイター</h1>
+            <div class="button-container">
+            <a href="../index.html">問題ツールへ</a>
+            </div>
+            <div class="quiz-name-section">
+                <input type="text" id="quizName" placeholder="クイズセットの名前" class="glass-input">
+            </div>
+            
+            <div id="questionsContainer"></div>
+            
+            <button id="addQuestion" class="floating-button glass">
+                <i class="fas fa-plus"></i> 問題を追加
+            </button>
+        </div>
+        
+        <div id="progressContainer" class="progress-container glass hidden">
+            <div class="progress-text">JSON生成の進捗状況</div>
+            <div class="progress-bar">
+                <div id="progressBar" class="progress"></div>
+            </div>
+            <button id="downloadButton" class="download-button glass hidden">
+                <i class="fas fa-download"></i> JSONをダウンロード
+            </button>
+        </div>
+    </div>
+
+    <template id="questionTemplate">
+        <div class="question-card glass">
+            <div class="card-header">
+                <h3>問題 <span class="question-number"></span></h3>
+                <button class="delete-button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="input-group">
+                <textarea class="question-text glass-input" placeholder="問題文を入力してください"></textarea>
+            </div>
+            
+            <div class="type-selector">
+                <label class="radio-container">
+                    <input type="radio" name="type" value="multiple" checked>
+                    <span class="radio-label">選択式</span>
+                </label>
+                <label class="radio-container">
+                    <input type="radio" name="type" value="text">
+                    <span class="radio-label">記述式</span>
+                </label>
+            </div>
+            
+            <div class="multiple-choice-section">
+                <div class="options-count">
+                    <label>選択肢の数:</label>
+                    <select class="options-select glass-input">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                
+                <div class="options-container"></div>
+                
+                <div class="correct-answer">
+                    <label>正解の番号:</label>
+                    <input type="number" class="correct-number glass-input" min="1" max="10" value="1">
+                </div>
+            </div>
+            
+            <div class="text-answer-section hidden">
+                <div class="input-group">
+                    <input type="text" class="text-answer glass-input" placeholder="正解を入力してください">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" class="hint glass-input" placeholder="ヒントを入力してください">
+            </div>
+            
+            <div class="input-group">
+                <textarea class="explanation glass-input" placeholder="解説を入力してください"></textarea>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

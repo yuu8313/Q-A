@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8313クイズアプリ</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ホーム画面 -->
+        <div id="home-screen" class="screen active">
+            <h1>8313クイズアプリ</h1>
+            <div class="quiz-sets">
+                <div class="quiz-set glass" data-set-id="set1">
+                    <i class="fas fa-book"></i>
+                    <h3>一般常識</h3>
+                    <p>基本的な一般常識問題</p>
+                </div>
+                <div class="quiz-set glass" data-set-id="set2">
+                    <i class="fas fa-globe"></i>
+                    <h3>世界の地理</h3>
+                    <p>世界の国々について</p>
+                </div>
+            </div>
+            <div class="upload-section glass">
+                <label for="quiz-upload" class="upload-button">
+                    <i class="fas fa-upload"></i>
+                    JSONファイルをアップロード
+                </label>
+                <input type="file" id="quiz-upload" accept=".json" style="display: none;">
+            </div>
+            <div class="button-container">
+            <a href="generator/index.html">JSON問題作成</a>
+            </div>
+        </div>
+
+        <!-- クイズ設定ダイアログ -->
+        <div id="quiz-settings-dialog" class="settings-dialog">
+            <h2>クイズモードを選択</h2>
+            <div class="quiz-modes">
+                <label>
+                    <input type="radio" name="quiz-mode" value="sequential" checked>
+                    順番通りに出題
+                </label>
+                <label>
+                    <input type="radio" name="quiz-mode" value="random">
+                    ランダムに出題
+                </label>
+                <label>
+                    <input type="radio" name="quiz-mode" value="custom">
+                    問題数を指定
+                </label>
+                <div id="question-count-container" style="display: none;">
+                    <input type="number" id="question-count" min="1" value="5">
+                    <span>問</span>
+                </div>
+            </div>
+            <button onclick="applyQuizSettings()" class="start-button glass">
+                開始
+            </button>
+        </div>
+
+        <!-- クイズ画面 -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-container glass">
+                <div class="quiz-header">
+                    <h2 id="question">問題がここに表示されます</h2>
+                    <button id="hint-btn" class="hint-button glass">
+                        <i class="fas fa-lightbulb"></i> ヒント
+                    </button>
+                </div>
+                <div id="options" class="options">
+                    <!-- 選択肢がここに動的に追加されます -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 結果画面 -->
+        <div id="result-screen" class="screen">
+            <div class="result-container glass">
+                <div id="judgment" class="judgment"></div>
+                <div id="explanation" class="explanation"></div>
+                <button id="next-btn" class="next-button glass">
+                    次へ <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
